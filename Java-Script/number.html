@@ -1,0 +1,31 @@
+<html>
+<body>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <script>
+        let x=123e5;
+        let y=123e-5;
+
+        let a=0.2+0.1;
+        document.getElementById("domo").innerHTML = a ;
+        
+        let b=(0.2*10)+(0.1*10)/10;
+        document.getElementById("demo1").innerHTML = b ;
+
+        document.getElementById("demo").innerHTML = 100 + "10";
+        document.getElementById("demo").innerHTML = 100 / "10";
+        document.getElementById("demo").innerHTML = 100 * "10";
+        document.getElementById("demo").innerHTML = 100 - "10";
+        
+        let c= 100/"Apple";
+
+        document.getElementById("demo").innerHTML = isNAN(c);
+        // infinity is a type of  number
+
+
+        let n=500;
+        let o= new Number(500);
+        document.getElementById("demo").innerHTML = (x==y);
+    </script>
+</body>
+</html>

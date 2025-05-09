@@ -1,0 +1,19 @@
+<html>
+<body>
+
+    Enter your name: <input type="text" id="fname" onblur="myFunction()">
+    Enter your name: <input type="text" id="fname" onchange="myFunction()">
+    Enter your name: <input type="text" id="fname" onfocus="myFunction()"><!-- When click on input box-->
+    Enter your name: <input type="text" id="fname" onselect="myFunction()"><!-- input box data-->
+    Enter your name: <input type="text" id="fname" onsubmit="myFunction()"><!--  submit button-->
+    Enter your name: <input type="text" id="fname" onfocus="myFunction()"><!--reset button-->
+
+    <script>
+        function myFunction() {
+            const x = document.getElementById("fname");
+            x.value = x.value.toUpperCase();
+        }
+        
+    </script>
+</body>
+</html>

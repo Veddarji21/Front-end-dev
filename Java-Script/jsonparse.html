@@ -1,0 +1,26 @@
+<html>
+
+<body>
+    <p id="demo"></p>
+
+    <script>
+        const txt = '{"name":"John", "age":30, "city":"New York"}'
+        const obj = JSON.parse(txt);
+        document.getElementById("demo").innerHTML = obj.name + ", " + obj.age;
+
+        /*parse on array*/
+        const xmlhttp = new XMLHttpRequest();
+        xmlhttp.onload = function () {
+            const myArr = JSON.parse(this.responseText);
+            document.getElementById("demo").innerHTML = myArr[0];
+        }
+        xmlhttp.open("GET", "json_demo_array.txt", true);
+        xmlhttp.send();
+
+        
+    </script>
+
+
+</body>
+
+</html>

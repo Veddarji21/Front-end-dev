@@ -1,0 +1,33 @@
+<html>
+
+<body>
+    <p id="demo"></p>
+    <script>
+        let day;
+        switch (new Date().getDay()) {
+            case 0:
+                day = "Monday";
+                break;
+            case 1:
+                day = "Tuesday";
+                break;
+            case 2:
+                day = "Wensday";
+                break;
+            case 3:
+                day = "Thusday";
+                break;
+            case 4:
+                day = "Firday";
+                break;
+            case 5:
+                day = "Saturday";
+            case 6:
+                day = "Sunday";
+                break;
+        }
+        document.getElementById("demo").innerHTML = "Today is"+day;
+    </script>
+</body>
+
+</html>
