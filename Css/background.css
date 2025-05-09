@@ -1,0 +1,9 @@
+body{
+    background-image: url("paper.gif");
+    background-repeat: repeat -x; /*repeated only horizontally! */
+    background-repeat: repeat -y; /*repeated only vartically! */
+    background-position: right top;
+    margin-right:200px;
+    background-attachment: fixed;
+ 
+}

@@ -1,0 +1,21 @@
+h1{
+    border: 1px solid black;
+    padding-top: 50px;
+    padding-left: 50px;
+    padding-bottom: 50px;
+    padding-top: 50px;
+
+    padding: 25px 50px 75px 100px;
+    box-sizing: border-box;
+}
+
+div.v1
+{
+width: 300px;
+}
+div.v2
+{
+width: 300px;
+padding: 25px;
+box-sizing:border-box;
+}

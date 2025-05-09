@@ -1,0 +1,26 @@
+div{
+    height: 100px;
+    width: 100px;
+
+    max-width: 500px;
+    min-width: 100px;
+    max-height: 500px;
+    min-height: 100px;
+}
+
+
+
+img
+{
+    height: 100%;
+}
+img.one
+{
+    height: auto;
+    width: auto;
+}
+img.two
+{
+    height: 50%;
+    width: 50%;
+}

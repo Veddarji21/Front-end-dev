@@ -1,0 +1,13 @@
+div
+{
+    background-color:aqua ;
+    width: 100px;
+height: 100PX;
+border: 1px solid;
+overflow: visible;    
+overflow: scroll;
+overflow: hidden;
+overflow-y: hidden;
+overflow-x: scroll;
+
+}

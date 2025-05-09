@@ -1,0 +1,34 @@
+table,th,td{
+    border: 1px solid;
+}
+table
+
+{
+    overflow-x: auto;
+    /* border: 1px solid; for single around table*/
+    width: 100%;
+    border-collapse: collapse;
+}
+th
+{
+    height: 10px;
+    text-align: center;
+}
+td
+{
+    vertical-align: bottom;
+}
+th,td{
+    padding: 10px;
+}
+tr:hover{
+    background-color: pink;
+}
+tr:nth-child(even)
+{
+    background-color: darkgray;
+}
+caption
+{
+    caption-side: bottom;
+}

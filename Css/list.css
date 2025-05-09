@@ -1,0 +1,24 @@
+p{
+    list-style: circle;
+    list-style: disc;
+    list-style: square;
+
+
+    list-style-image:url(sqpurpule.gif) ;
+    
+    list-style-position: inside;
+}
+
+ol
+{
+    background: pink;
+    border: 1px solid #ddd;
+}
+ol li
+
+{
+    background:wheat;
+    color: darkred;
+    padding: 5px;
+    margin-left: 35px;
+}

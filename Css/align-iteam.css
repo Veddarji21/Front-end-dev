@@ -1,0 +1,13 @@
+.box
+{
+    align-items: center;
+    align-items: flex-start;
+    align-items: stretch;
+    align-items: baseline;
+
+    align-content: center;
+    align-content: flex-start;
+    align-content: space-between;
+    align-content: space-around;
+    flex-direction: column;
+}

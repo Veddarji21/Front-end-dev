@@ -1,0 +1,12 @@
+p{
+    border: 2px solid black;
+    outline: green solid 20px;
+    margin: auto;
+    text-align: center;
+
+    outline-style:dotted ;
+    outline-color: wheat;
+    outline-width: 120px;
+
+    outline-offset: 20px;
+}

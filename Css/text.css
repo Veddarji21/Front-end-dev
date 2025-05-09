@@ -1,0 +1,33 @@
+p{
+    color: black;
+    text-align: center;
+
+    text-decoration: none;
+    text-decoration: underline;
+    text-decoration: underline red;
+
+    text-transform: capitalize;
+    text-transform: lowercase;
+
+    /*used to specify the indentation of the first line of a block of text*/
+    text-indent: 50px;
+
+    letter-spacing:5px;
+
+    line-height: 1.5;
+
+    word-spacing: 2px;
+    
+    direction: rtl;
+    unicode-bidi:bidi-override ;
+
+    text-shadow: 2px 2px red;
+
+    white-space: nowrap;
+
+    /*vertical align of an img insidetext*/
+    vertical-align: auto;
+    vertical-align: bottom;
+
+
+}

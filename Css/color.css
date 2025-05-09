@@ -1,0 +1,12 @@
+body{
+    background-color: purple ;
+}
+h1{
+    color: aqua;
+}
+p{
+    color: chartreuse;
+    color: rgb(100,20 ,30);
+ color: #fff;
+ color: hsl(9, 100%, 60%);
+}

@@ -1,0 +1,26 @@
+p{
+    border-style:solid ;
+    border-style:dotted ;
+    border-style:double;
+    border-style:dashed ;
+    border-style:groove ;
+    border-style:ridge ;
+    border-style:inset ;
+    border-style:hidden ;
+
+
+    border-width: thick;
+    border-width:thin ;
+
+
+    border-top-style: dotted;
+    border-left-style: dashed;
+    border-left-style:solid ;
+    border-bottom-width:100px ;
+
+    border-color: antiquewhite;
+    border-top-color: aliceblue;
+
+    border-radius: 50px;
+    border-top: thick double red;
+}

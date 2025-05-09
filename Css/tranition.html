@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <style>
+            div{
+                width: 100px;
+                height: 100px;
+                background-color: red;
+                transition:  2s;
+            }
+            div:hover{
+                width: 300px;
+            }
+            .d{
+                width: 100px;
+                height: 100px;
+                color: blueviolet;
+                transition-delay: 2s;
+                transition: width 4s,height 3s;
+            }
+            .d:hover{
+                height: 400px;
+                width: 200px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>1</div><br>
+        <div class="d"></div>
+    </body>
+</html>
