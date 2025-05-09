@@ -1,0 +1,67 @@
+<html>
+
+<head>
+    <title>Kitty Digital Clock</title>
+    <style>
+        body {
+            background-color: wh;
+            margin: 300px 90px 80px 1080px;
+            
+            justify-content: center;
+            height: 80vh;
+            background-image: url(R\ \(1\).jpeg);
+            background-repeat: no-repeat;
+            position: fixed;
+            background-size: cover; 
+            background-attachment: fixed;
+            color: black;
+            text-align: center;
+        }
+
+        div {
+            backdrop-filter: blur(20px);
+            font-size: 50px;
+            
+            padding: 60px 80px 60px 80px;
+            /* margin: 20px;     */
+            float: left;
+            border: 1px solid transparent;
+            /* border-radius: 50%; */
+            background-color: transparent;
+            box-shadow: 0 0 5px 5px none ;
+            height: 100px;
+            width: 100px;
+            text-align: center;
+            color: black;
+            
+        }
+        h1
+        {
+            font-size: 50px;
+            color: black;
+        }
+    </style>
+</head>
+
+<body onload="digitalclock()">
+    <h1> Kitty Digital Watch</h1>
+    <div id="hours"></div>
+    <div id="minitues"></div>
+    <div id="Seconds"></div>
+
+    <script>
+        function digitalclock() {
+            const today = new Date();
+            let h = today.getHours();
+            let m = today.getMinutes();
+            let s = today.getSeconds();
+
+            document.getElementById('hours').innerHTML = h ;
+            document.getElementById('minitues').innerHTML = m ;
+            document.getElementById('Seconds').innerHTML = s ;
+            setTimeout(digitalclock, 1000);
+        }
+    </script>
+</body>
+
+</html>

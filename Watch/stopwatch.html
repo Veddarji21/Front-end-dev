@@ -1,0 +1,112 @@
+<html>
+
+<head>
+    <title>Stop Watch</title>
+    <style>
+        body {
+            margin: 200px;
+
+            background-color: bisque;
+        }
+
+        h1 {
+            text-align: center;
+            color: red;
+            font-size: 50px;
+        }
+
+        button {
+            border: none;
+            background-color: burlywood;
+            border-radius: 12px;
+            padding: 10px;
+            margin: 5px;
+            font-size: 20px;
+        }
+        button:hover{
+            background-color: darksalmon;
+        }
+
+        div {
+            font-size: 35px;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <h1> Digital Watch</h1>
+
+
+        <button onclick="starttimer()">Start</button>
+        <button onclick="stoptimer()">Stop</button>
+        <button onclick="resetimer()">Reset</button><br><br><br>
+        <div id="timer">00:00:00</div>
+
+    </center>
+    <script>
+
+        let timer;
+        let seconds = 0;
+        let minutes = 0;
+        let hours = 0;
+        let running = false;
+
+        function updatedisplay() {
+            let h,m,s;
+            if (hours < 10) {
+                 h = "0" + hours;
+            }
+            else
+            {
+                h=hours;
+            }
+            if (minutes < 10) {
+                 m = "0" + minutes;
+            } 
+            else{
+                m = minutes;
+            }
+             if (seconds < 10) {
+                 s = "0" + seconds;
+            }
+            else
+            {
+                s=seconds;
+            }
+            document.getElementById("timer").innerText = `${h}:${m}:${s}`;
+        }
+
+        function starttimer() {
+            if (!running) {
+                running = true;
+                timer = setInterval(() => {
+                    seconds++;
+                    if (seconds === 60) {
+                        seconds = 0;s
+                        minutes++;
+                    }
+                    else if (minutes === 60) {
+                        minutes = 0;
+                        hours++;
+                    }
+                    updatedisplay();
+                }, 1000);
+            }
+        }
+        function stoptimer() {
+            clearInterval(timer);
+            running = false;
+        }
+        function resetimer() {
+            stoptimer();
+            seconds = 0;
+            minutes = 0;
+            hours = 0;
+            updatedisplay();
+        }
+    </script>
+</body>
+
+</html>
