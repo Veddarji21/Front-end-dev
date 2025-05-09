@@ -1,0 +1,155 @@
+<html>
+
+<head>
+    <title>Bank Form</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: orange;
+            backdrop-filter: blur(5px);
+        }
+
+        form {
+            background-color: whitesmoke;
+            padding: 30px;
+            border-radius: 10px;
+            width: 350px;
+            backdrop-filter: blur(20px);
+        }
+
+        h1 {
+            text-align: center;
+            color: orange;
+        }
+
+        input[type="text"],
+        input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid orange;
+            border-radius: 5px;
+            background-color: transparent;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid orange;
+            border-radius: 5px;
+            background-color: transparent;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: orange;
+            color: white;
+        }
+
+        #result {
+            padding: 100px;
+            font-size: larger;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <form name="bankForm" onsubmit="return validation(event)" autocomplete="off">
+        <h1>Bank Form</h1>
+        Enter Branch Name:<input type="text" onkeypress="return event.charCode < 48 || event.charCode > 57" name="branch"><br>
+        Enter Account Number:<input type="number" name="account"><br>
+        Enter IFSC CODE:<input type="number" name="ifsc"><br>
+        <p>Select Your Account Type</p>
+        <input type="checkbox" id="saving">Saving
+        <input type="checkbox" id="current">Current <br><br>
+        Enter Account Holder Name:<input type="text" onkeypress="return event.charCode < 48 || event.charCode > 57" name="holder"><br>
+        Enter Form Filling Date:<input type="date" name="date"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <p id="result" style="color: white;"></p>
+    <script>
+        function validation(event) {
+            event.preventDefault();
+
+            const branch = document.forms["bankForm"]["branch"].value;
+            const accountNumber = document.forms["bankForm"]["account"].value;
+            const ifsc = document.forms["bankForm"]["ifsc"].value;
+            const accountHolder = document.forms["bankForm"]["holder"].value;
+            const date = document.forms["bankForm"]["date"].value;
+            const saving = document.getElementById("saving").checked;
+            const current = document.getElementById("current").checked;
+
+            if (branch === "" || accountNumber === "" || accountHolder === "" || date === "" || ifsc === "") {
+                alert("All Fields Required.");
+                return false;
+            } 
+            else if (/\d/.test(branch)) {
+                alert("Name cannot contain numbers");
+                return false;
+            }
+            if (accountNumber.length < 12) {
+                alert("Account Number must be at least 12 digits");
+                return false;
+            }
+
+            if (ifsc.length < 8) {
+                alert("IFSC Code must be at least 8 characters");
+                return false;
+            }
+
+
+
+            const selectedDate = new Date(date);
+            const today = new Date();
+            selectedDate.setHours(0, 0, 0, 0);
+            today.setHours(0, 0, 0, 0);
+
+            if (selectedDate < today) {
+                alert("Joining Date cannot be in the Past.");
+                return false;
+            }
+
+
+            if (!saving && !current) {
+                alert("Please select Account Type");
+                return false;
+            }
+            else if (/\d/.test(accountHolder)) {
+                alert("Holder Name cannot contain numbers");
+                return false;
+            }
+            let accountType = "";
+            if (saving) accountType += "Saving ";
+            if (current) accountType += "Current";
+
+            document.getElementById('result').innerText =
+                `Your Account Details ::\n` +
+                `Branch Name: ${branch}\n` +
+                `Account Number: ${accountNumber}\n` +
+                `IFSC Code: ${ifsc}\n` +
+                `Account Type: ${accountType}\n` +
+                `Account Holder Name: ${accountHolder}\n` +
+                `Form Date: ${date}`;
+
+            return false;
+        }
+
+    </script>
+</body>
+
+</html>

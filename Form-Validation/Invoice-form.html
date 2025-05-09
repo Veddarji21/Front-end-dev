@@ -1,0 +1,155 @@
+<html>
+
+  <head>
+    <title>INVOICE FORM</title>
+    <style>
+        body {
+            display: flex;  
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: lightgreen;
+            padding: 30px;
+            border: 1px solid black;
+            border-radius: 10px;
+            width: 400px;
+        }
+
+        h1 {
+            text-align: center;
+            color: black;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: white;
+        }
+        p
+        {
+            color: black;
+            margin: 200px;
+        }
+    </style>
+  </head>
+
+<body>
+    <form name="form" autocomplete="off" onsubmit="return validation();">
+        <h1>Enter Invoice Details</h1>
+        Enter Customer Name: <input type="text" onkeypress="return event.charCode < 48 || event.charCode > 57"  name="cname"><br>
+        Enter Customer Mobile Number: <input type="number" name="cnum"><br>
+        <label>Select Customer Gender:</label><br>
+        Male <input type="radio" name="gender" value="Male">
+        Female <input type="radio" name="gender" value="Female"><br><br>
+        Enter Product Name: <input type="text" onkeypress="return event.charCode < 48 || event.charCode > 57"  name="product"><br>
+        Enter Product Price: <input type="number" name="price" id="price"><br>
+        Enter Percentage: <input type="number" name="percentage" id="percentage"><br>
+        Enter GST Number: <input type="number" name="gst"><br><br>
+
+        <input type="submit" value="Submit">
+    </form><br><br>
+    <p id="result"></p>
+
+    <script>
+        function validation() {
+            let cname = document.forms["form"]["cname"].value;
+            if (cname === "") {
+                alert("Please enter Customer Full Name");
+                return false;
+            } else if (/\d/.test(cname)) {
+                alert("Name cannot contain numbers");
+                return false;
+            }
+
+            let cnum = document.forms["form"]["cnum"].value;
+            if (cnum === "") {
+                alert("Please enter Customer Mobile Number");
+                return false;
+            }
+            
+            let radios = document.getElementsByName("gender");
+            let gender = "";
+            for (let i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    gender = radios[i].value;
+                    break;
+                }
+            }
+            if (gender === "") {
+                alert("Please select Gender");
+                return false;
+            }
+
+            let product = document.forms["form"]["product"].value;
+            if (product === "") {
+                alert("Please enter Product Name");
+                return false;
+            }
+            else if (/\d/.test(product)) {
+                alert("Product Name cannot contain numbers");
+                return false;
+            }
+            let price = document.forms["form"]["price"].value;
+            if (price === "" ) {
+                alert("Please enter Product Price ");
+                return false;
+            }
+            let percentage = document.forms["form"]["percentage"].value;
+            if ( percentage === "") {
+                alert("Please enter Product Percentage");
+                return false;
+            }
+
+            let gst = document.forms["form"]["gst"].value;
+            if (gst === "") {
+                alert("Please Enter GST Number");
+                return false;
+            }
+             else if (gst.length < 15) {
+                alert("GST number length must be at least 15 characters");
+                return false;
+            }
+
+            let amount = parseFloat(price);
+            let percent = parseFloat(percentage);
+            let tax = (amount * percent) / 100;
+            let finalAmount = amount + tax;
+
+    
+            document.getElementById('result').innerText =
+                `Invoice ::\n `+
+                `Customer Name: ${cname}\n` +
+                `Mobile Number: ${cnum}\n` +
+                `Gender: ${gender}\n` +
+                `Product: ${product}\n` +
+                `Base Price: ₹${amount}\n` +
+                `Tax (${percent}%): ₹${tax}\n` +
+                `Total Amount: ₹${finalAmount}\n` +
+                `GST Number: ${gst} \n  `;
+
+            return false; 
+        }
+    </script>
+</body>
+
+</html>

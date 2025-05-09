@@ -1,0 +1,200 @@
+<html>
+
+<head>
+    <title>Patient Form</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            background-image: url(4113244.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            height: 100vh;
+            
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            color: white;
+        }
+
+        form {
+            background-color: transparent;
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 100%;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 5px 5px white;
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+            color: white;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="number"] {
+            width: 95%;
+            padding: 10px;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        label,
+        p {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 8px;
+        }
+
+        input[type="submit"] {
+            background-color: white;
+            color: black;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: lightcyan;
+        }
+
+        #result {
+
+            padding: 25px;
+            width: 100%;
+            max-width: 300px;
+            backdrop-filter: blur(5px);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Patient Form</h1>
+    <div class="container">
+        <form name="form" onsubmit="return validation(event)" autocomplete="off">
+            Enter Patient Full Name:<input type="text" onkeypress="return event.charCode < 48 || event.charCode > 57"
+                name="fname"><br><br>
+
+            Enter Date of birth:<br>
+            <input type="date" name="age"><br><br>
+
+            <label>Select Patient Gender:</label><br>
+            Male <input type="radio" name="gender" value="Male">
+            Female <input type="radio" name="gender" value="Female"><br><br>
+
+            Enter Appointment Date: <input type="date" name="date"><br><br>
+
+            <p>Select Patient Medical Problem</p>
+            <input type="checkbox" name="eyes"> Eyes
+            <input type="checkbox" name="ears"> Ears
+            <input type="checkbox" name="skin"> Skin<br><br>
+
+            <input type="submit" value="Submit">
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function calculateAge(dob) {
+            var birthDate = new Date(dob);
+            var today = new Date();
+            var age = today.getFullYear() - birthDate.getFullYear();
+            var m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            return age;
+        }
+
+        function validation(event) {
+            event.preventDefault();
+
+            var form = document.forms["form"];
+            var name = form["fname"].value;
+            var dob = form["age"].value;
+            var date = form["date"].value;
+
+            if (name === "") {
+                alert("Please enter the patient's full name.");
+                return false;
+            }
+
+            if (dob === "") {
+                alert("Please enter the patient's date of birth.");
+                return false;
+            }
+
+            var age = calculateAge(dob);
+
+            var genderElems = form["gender"];
+            var gender = "";
+            for (var i = 0; i < genderElems.length; i++) {
+                if (genderElems[i].checked) {
+                    gender = genderElems[i].value;
+                    break;
+                }
+            }
+
+            if (gender === "") {
+                alert("Please select the patient's gender.");
+                return false;
+            }
+
+            if (date === "") {
+                alert("Please select the appointment date.");
+                return false;
+            }
+
+            var selectedDate = new Date(date);
+            var today = new Date();
+            selectedDate.setHours(0, 0, 0, 0);
+            today.setHours(0, 0, 0, 0);
+            if (selectedDate < today) {
+                alert("Appointment date cannot be in the Past.");
+                return false;
+            }
+
+            var problems = [];
+            if (form["eyes"].checked) problems.push("Eyes");
+            if (form["ears"].checked) problems.push("Ears");
+            if (form["skin"].checked) problems.push("Skin");
+
+            if (problems.length === 0) {
+                alert("Please select at least one medical problem.");
+                return false;
+            }
+
+            var resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = `
+                <h2>Patient Information:</h2>
+                <p>Full Name: ${name}</p>
+                <p>Date of Birth:${dob}</p>
+                <p>Age: ${age} years</p>
+                <p>Gender: ${gender}</p>
+                <p>Appointment Date: ${date}</p>
+                <p>Medical Problems: ${problems.join(", ")}</p>
+            `;
+
+            return false;
+        }
+    </script>
+</body>
+
+</html>

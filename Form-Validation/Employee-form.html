@@ -1,0 +1,153 @@
+<html>
+
+<head>
+    <title>Employee Form</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: wheat;
+            border: 1px solid purple;
+            border-radius: 15px;
+            padding: 30px;
+            border-radius: 10px;
+            width: 350px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-right: 15px;
+            margin-bottom: 15px;
+            border: 1px solid purple;
+            border-radius: 5px;
+        }
+
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: white;
+            color: black;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: wheat;
+        }
+
+        #error {
+            color: red;
+            text-align: center;
+            font-weight: bold;
+        }
+        #rezult
+        {
+            text-align: center;
+            color: black;
+            margin: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <form name="form" autocomplete="off">
+        <h1>Enter Employee Details</h1>
+
+        Enter Employee Full Name:<input type="text" name="fname" onkeypress="return event.charCode < 48 || event.charCode > 57" title="Numbers are not allowed">
+
+        <br>
+        Enter Employee Age:<input type="number" name="age"><br>
+
+        <label>Select Employee Gender:</label><br>
+        Male <input type="radio" name="gender">
+        Female <input type="radio" name="gender"><br><br>
+
+        Enter Department Name:<input type="text" onkeypress="return event.charCode < 48 || event.charCode > 57"  name="dname"><br>
+        Enter Joining Date:<input type="date" id="date" name="date"><br>
+        Enter Employee ID:<input type="number" name="id"><br>
+
+        <p id="error"></p>
+
+        <input type="submit" onclick="return validation()">
+    </form><br><br>
+    <p id="rezult"></p>
+    <script>
+        function validation() {
+        const fname = document.forms["form"]["fname"].value;
+        if (fname === "") return alert("Please enter Employee Full Name"), false;
+        else if (/\d/.test(fname)) {
+                alert("Name cannot contain numbers");
+                return false;
+            }
+    
+        const age = document.forms["form"]["age"].value;
+        if (age === "") return alert("Please enter Employee Age"), false;
+    
+        const radios = document.getElementsByName("gender");
+        let genderSelected = false;
+        let genderValue = "";
+        for (let i = 0; i < radios.length; i++) {
+            if (radios[i].checked) {
+                genderSelected = true;
+                genderValue = radios[i].previousSibling.textContent?.trim() || radios[i].value || "N/A"; 
+                break;
+            }
+        }
+        if (!genderSelected) return alert("Please select Gender"), false;
+    
+        const dname = document.forms["form"]["dname"].value;
+        if (dname === "") return alert("Please enter Department Name"), false;
+    
+        const date = document.forms["form"]["date"].value;
+        const error = document.getElementById("error");
+        if (!date) {
+            alert("Please select Date");
+            return false;
+        }
+    
+        const selectedDate = new Date(date);
+        const today = new Date();
+        selectedDate.setHours(0, 0, 0, 0);
+        today.setHours(0, 0, 0, 0);
+    
+        if (selectedDate > today) {
+            alert( "Joining Date cannot be in the future.")
+            return false;
+        }
+    
+        const id = document.forms["form"]["id"].value;
+        if (id === "") return alert("Please enter Employee ID"), false;
+    
+    
+    
+        document.getElementById("rezult").innerText =
+            `Employee Details::
+            Name: ${fname}\n
+            Age: ${age}\n
+            Gender: ${genderValue}\n
+            Department: ${dname}\n
+            Joining Date: ${date}\n 
+            Employee ID: ${id}`;
+        
+        return false;
+    }
+</script>    
+</body>
+
+</html>
