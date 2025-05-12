@@ -1,0 +1,104 @@
+<html>
+
+<head>
+    <title>Weather Site</title>
+    <style>
+        body {
+            background-color: navy;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            margin-top: 100px;
+            margin-bottom: 80px;
+            color: whitesmoke;
+        }
+
+        input[type="text"] {
+            text-align: center;
+            background-color: whitesmoke;
+            margin-top: 30px;
+            border-radius: 10px;
+            border: none;
+            height: 40px;
+            width: 500px;
+        }
+
+        button {
+            border: none;
+            border-radius: 10px;
+            height: 40px;
+            width: 100px;
+        }
+
+        form {
+            height: 400px;
+            width: 1250px;
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            text-align: center;
+            padding-top: 30px;
+            box-shadow: 0 0 60px 0px white;
+        }
+
+        #weather {
+            border-radius: 20px;
+            color: aliceblue;
+            margin-top: -70px;
+            text-align: center;
+
+        }
+    </style>
+</head>
+
+<body >
+    <h1>Find Your City Weather Checker</h1>
+    <form id="weatherForm" onsubmit="return false;" autocomplete="off">
+        <input type="text" id="city" placeholder="Enter Your City Name" />
+        <button type="button" onclick="Weather()">Search</button>
+        <div id="weather"></div>
+    </form>
+    <div id="er"></div>
+    <script>
+        function Weather() {
+            const city = document.getElementById("city").value  ;
+            const apiKey = "bd5e378503939ddaee76f12ad7a97608";
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("City Not Found");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+
+                    if (data.main.temp >= 28) {
+                        document.getElementById("weatherForm").style.backgroundColor = "red";
+
+                    } else {
+                        document.getElementById("weatherForm").style.backgroundColor = "dodgerblue";
+
+                    }
+
+                    
+                    document.getElementById("weather").innerHTML = `
+                <h1 >${data.name}, ${data.sys.country}</h1>
+                <h3>Temperature: ${data.main.temp}°C</h3>
+                <h3>Wind Speed: ${data.wind.speed} m/s</h3>
+                <h3>Condition: ${data.weather[0].main}</h3>
+            `;
+                })
+                .catch(error => {
+                    document.getElementById("er").innerHTML = `<h3>${error.message}</h3>`;
+                });
+        }
+
+    </script>
+</body>
+
+</html>
