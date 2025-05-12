@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Weather</title>
+    <style>
+        body {
+            margin: 200px;
+            background-color: cornflowerblue;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: whitesmoke;
+            text-decoration: double;
+        }
+
+        form {
+            border: 1px solid;
+            border-radius: 15px;
+            box-shadow: 0 0 20px;
+            text-align: center;
+            padding: 20px;
+            color: aliceblue;
+            background-color: rgba(255, 255, 255, 0.1);
+            height: 280px;
+        }
+
+        input[type="text"] {
+            text-align: center;
+            height: 30px;
+            border-radius: 12px;
+            border: none;
+            max-width: 250px;
+            padding: 0 10px;
+        }
+
+        input[type="submit"] {
+            height: 30px;
+            max-width: 150px;
+            border-radius: 12px;
+            border: none;
+            background-color: wheat;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: blanchedalmond;
+        }
+
+        #weatherResult {
+            margin-top: 20px;
+            color: aliceblue;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <center>
+        <form id="weatherForm" autocomplete="off">
+            <h1>Find Your City Weather</h1>
+            <input type="text" id="cityInput" placeholder="Enter Your City Name">
+            <input type="submit" value="Search" onclick="showWeather(event)">
+            <div id="weatherResult"></div>
+        </form>
+
+        
+    </center>
+
+    <script>
+        const mockWeatherData = {
+            "ahmedabad": {
+                name: "Ahmedabad",
+                temp: 35,
+                description: "Clear sky",
+                humidity: 45
+            },
+            "mumbai": {
+                name: "Mumbai",
+                temp: 30,
+                description: "Cloudy",
+                humidity: 70
+            },
+            "london": {
+                name: "London",
+                temp: 20,
+                description: "coludy",
+                humidity: 40
+            }
+        };
+
+        function showWeather(event) {
+            event.preventDefault();
+            const city = document.getElementById("cityInput").value.trim().toLowerCase();
+            const data = mockWeatherData[city];
+            const resultDiv = document.getElementById("weatherResult");
+
+            if (data) {
+                const form = document.getElementById("weatherForm");
+
+                
+                if (data.temp > 28) {
+                    form.style.backgroundColor = "red";
+                } else {
+                    form.style.backgroundColor = "lightskyblue";
+                }
+
+                resultDiv.innerHTML =
+                    `<h2>${data.name}</h2>
+                    <p>Temperature: ${data.temp} °C</p>
+                    <p>Weather: ${data.description}</p>
+                    <p>Humidity: ${data.humidity}%</p>`;
+            } else {
+                resultDiv.innerHTML = "<p>No data found for this city.</p>";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
